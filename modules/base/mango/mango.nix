@@ -27,6 +27,9 @@
       packages.mango-font = pkgs.stdenvNoCC.mkDerivation {
         pname = "mango-font";
         version = "1.0";
+        # yes a ttf is in fact not an archive...
+        # WHY do i have to tell nix that???
+        dontUnpack = true;
         src = ./Mango.ttf;
 
         installPhase = ''
