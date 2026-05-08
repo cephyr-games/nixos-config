@@ -1,6 +1,12 @@
-{ self, inputs, ... }:
+{
+  self,
+  inputs,
+  shared,
+  ...
+}:
 {
   flake.nixosConfigurations.ruvyn = inputs.nixpkgs.lib.nixosSystem {
+    specialArgs = { inherit shared; };
     modules = with self.nixosModules; [
       (
         { config, ... }:
