@@ -34,7 +34,7 @@
 
         installPhase = ''
           mkdir -p $out/share/fonts/truetype/
-          cp -r $src/*.{ttf,otf} $out/share/fonts/truetype/
+          cp -r $src $out/share/fonts/truetype/Mango.ttf
         '';
 
         meta = with lib; {
