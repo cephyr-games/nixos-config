@@ -17,6 +17,7 @@
       # initial ramdisk
       boot.initrd.availableKernelModules = [
         "nvme" # disk
+        "sd_mod" # maybe not needed?
         "xhci_pci" # usb controller
         "usbhid" # keyboard
         "usb_storage" # boot from usb (helpful for recovery, unused normally)
