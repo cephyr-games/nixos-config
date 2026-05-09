@@ -5,7 +5,7 @@
   ...
 }:
 {
-  flake.nixosModules.helix =
+  flake.nixosModules.terminal =
     {
       pkgs,
       lib,

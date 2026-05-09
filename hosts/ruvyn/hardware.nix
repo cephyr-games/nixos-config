@@ -15,11 +15,14 @@
 
       # initial ramdisk
       boot.initrd.availableKernelModules = [
-        "nvme" # disk
-        "sd_mod" # maybe not needed?
-        "xhci_pci" # usb controller
-        "usbhid" # keyboard
-        "usb_storage" # boot from usb (helpful for recovery, unused normally)
+        # from nixos-generate-config
+        "nvme"
+        "sd_mod"
+        "vmd"
+        "xhci_pci"
+        "thunderbolt"
+        "usb_storage"
+        "usbhid" # usb keyboard
       ];
 
       # Needed unfree packages
