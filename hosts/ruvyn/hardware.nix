@@ -3,10 +3,13 @@
     { pkgs, lib, ... }:
     {
       nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
+      networking.hostName = "ruvyn";
 
       boot.loader = {
         grub.enable = false;
         systemd-boot.enable = true;
+        # set console size
+        systemd-boot.consoleMode = "0";
         efi.canTouchEfiVariables = true;
       };
 

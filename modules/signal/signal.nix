@@ -1,14 +1,13 @@
 {
-  flake.nixosModules.base =
+  flake.nixosModules.signal =
     {
       pkgs,
       ...
     }:
     {
       environment.systemPackages = [
-        pkgs.git
-        pkgs.tig
-        pkgs.tokei
+        pkgs.signal-desktop
       ];
     };
+
 }

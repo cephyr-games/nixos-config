@@ -262,80 +262,64 @@ theme: {
         text = "";
       }
       {
-        name = "Development";
-        text = "";
+        name = "Projects";
+        text = "󰚝";
       }
       {
         name = "Documents";
-        text = "󰈙";
+        text = "󱧶";
       }
       {
         name = "Downloads";
-        text = "";
-      }
-      {
-        name = "Library";
-        text = "";
-      }
-      {
-        name = "Movies";
-        text = "";
+        text = "󰉍";
       }
       {
         name = "Music";
-        text = "";
+        text = "󱍙";
       }
       {
         name = "Pictures";
-        text = "";
+        text = "󰉏";
       }
       {
         name = "Public";
-        text = "";
+        text = "󰴋";
       }
       {
         name = "Videos";
-        text = "";
+        text = "󱧺";
       }
       {
         name = "desktop";
         text = "";
       }
       {
-        name = "development";
-        text = "";
+        name = "projects";
+        text = "󰚝";
       }
       {
         name = "documents";
-        text = "󰈙";
+        text = "󱧶";
       }
       {
         name = "downloads";
-        text = "";
-      }
-      {
-        name = "library";
-        text = "";
-      }
-      {
-        name = "movies";
-        text = "";
+        text = "󰉍";
       }
       {
         name = "music";
-        text = "";
+        text = "󱍙";
       }
       {
         name = "pictures";
-        text = "";
+        text = "󰉏";
       }
       {
         name = "public";
-        text = "";
+        text = "󰴋";
       }
       {
         name = "videos";
-        text = "";
+        text = "󱧺";
       }
     ];
     files = [

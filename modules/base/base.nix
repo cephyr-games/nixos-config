@@ -15,6 +15,10 @@
     # set timezone to CEST
     time.timeZone = "Europe/Berlin";
 
+    # set keymap
+    console.earlySetup = true;
+    console.keyMap = "de";
+
     # set locale
     i18n.defaultLocale = "en_GB.UTF-8";
     # (BEWARE: requires a different format with the added /UTF-8)

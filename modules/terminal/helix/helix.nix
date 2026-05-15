@@ -8,13 +8,15 @@
   flake.nixosModules.terminal =
     {
       pkgs,
-      lib,
       config,
       ...
     }:
     {
       environment.systemPackages = [
         self.packages.${pkgs.stdenv.hostPlatform.system}."helix-${config.style.keyboard}-${config.style.theme}"
+        pkgs.nixfmt
+        pkgs.nixd
+        pkgs.netcat-openbsd
       ];
     };
 
@@ -22,7 +24,6 @@
     {
       pkgs,
       lib,
-      self',
       ...
     }:
     let

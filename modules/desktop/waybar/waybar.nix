@@ -8,21 +8,19 @@
   flake.nixosModules.desktop =
     {
       pkgs,
-      lib,
       config,
       ...
     }:
     {
       environment.systemPackages = [
         self.packages.${pkgs.stdenv.hostPlatform.system}."waybar-${config.style.theme}"
+        pkgs.lm_sensors
       ];
     };
 
   perSystem =
     {
       pkgs,
-      lib,
-      self',
       ...
     }:
     let
@@ -30,7 +28,10 @@
         theme:
         inputs.wrapper-modules.wrappers.waybar.wrap {
           inherit pkgs;
-          settings = import ./_config.nix shared.themes.${theme};
+          settings = import ./_config.nix {
+            inherit pkgs;
+            theme = shared.themes.${theme};
+          };
           "style.css".content =
             import ./_style.nix {
               theme = shared.themes.${theme};

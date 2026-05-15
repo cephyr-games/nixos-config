@@ -40,11 +40,11 @@ let
     # top row left
     "Mod+Q".spawn-sh = "alacritty -e yazi";
     "Mod+Shift+Q".spawn-sh = "kitty -e yazi";
-    "Mod+W".spawn = "zen-browser";
+    "Mod+W".spawn = "zen";
     "Mod+F".spawn = "alacritty";
     "Mod+P".spawn-sh = "alacritty -e sh -c \"r && sleep 0.1\"";
     "Mod+G".spawn = "signal-desktop";
-    "Mod+Alt+L".spawn = "swaylock";
+    "Mod+Alt+L".spawn = "veila";
 
     # middle row left
     "Mod+A".spawn-sh =
@@ -69,14 +69,18 @@ let
     "Mod+V".toggle-window-floating = _: { };
     "Mod+Ctrl+V".switch-focus-between-floating-and-tiling = _: { };
     "Mod+Shift+V".fullscreen-window = _: { };
+    "Mod+Alt+V" = _: {
+      props.repeat = false;
+      content.spawn-sh = "wl-mirror $(niri msg --json focused-output | jq -r .name)";
+    };
     "Mod+B" = _: {
       props.repeat = false;
       content.toggle-overview = _: { };
     };
 
     # dangerous keybinds
-    "Mod+Shift+Ctrl+Alt+I".quit = _: { skip-confirmation = true; };
-    "Mod+Shift+Ctrl+Alt+Y".spawn-sh = "shutdown now";
+    "Mod+Shift+Ctrl+I".quit = _: { skip-confirmation = true; };
+    "Mod+Shift+Ctrl+Y".spawn-sh = "shutdown now";
 
     # workspaces / windows / columns
     "Mod+1".focus-workspace = "1";
@@ -164,7 +168,15 @@ let
     };
     XF86MonBrightnessDown = _: {
       props.allow-when-locked = true;
-      content.spawn-sh = "brightnessctl --class=backlight set -10%";
+      content.spawn-sh = "brightnessctl --class=backlight set 10%-";
+    };
+    "Shift+XF86MonBrightnessUp" = _: {
+      props.allow-when-locked = true;
+      content.spawn-sh = "brightnessctl --class=backlight set +1%";
+    };
+    "Shift+XF86MonBrightnessDown" = _: {
+      props.allow-when-locked = true;
+      content.spawn-sh = "brightnessctl --class=backlight set 1%-";
     };
   };
 in

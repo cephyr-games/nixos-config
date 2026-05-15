@@ -44,7 +44,7 @@
     {
       name = "nix";
       auto-format = true;
-      scope = "nix.gd";
+      scope = "source.nix";
       roots = [
         "flake.nix"
         ".git"
@@ -53,7 +53,7 @@
       formatter = {
         command = "nixfmt";
       };
-      language-servers = [ "nil" ];
+      language-servers = [ "nixd" ];
     }
   ];
 }

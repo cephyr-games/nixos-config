@@ -7,8 +7,6 @@
   flake.nixosModules.terminal =
     {
       pkgs,
-      lib,
-      config,
       ...
     }:
     {
@@ -20,14 +18,16 @@
   perSystem =
     {
       pkgs,
-      lib,
-      self',
       ...
     }:
     {
       packages.fish = inputs.wrapper-modules.wrappers.fish.wrap {
         inherit pkgs;
         configFile.content = builtins.readFile ./config.fish;
+        abbreviations = {
+          nixos-test = "nixos-rebuild test --flake /etc/nixos";
+          nixos-switch = "nixos-rebuild switch --flake /etc/nixos";
+        };
       };
     };
 }

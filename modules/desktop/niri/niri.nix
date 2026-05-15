@@ -12,28 +12,78 @@
       config,
       ...
     }:
+    let
+      wallpaper-layer =
+        { namespace, image }:
+        {
+          "awww-${namespace}" = {
+            partOf = [ "graphical-session.target" ];
+            after = [ "graphical-session.target" ];
+            requisite = [ "graphical-session.target" ];
+            wantedBy = [ "niri.service" ];
+            serviceConfig = {
+              Type = "simple";
+              ExecStart = "${lib.getExe' pkgs.awww "awww-daemon"} --no-cache --namespace ${namespace}";
+            };
+          };
+          "wallpaper-${namespace}" = {
+            partOf = [ "awww-${namespace}.service" ];
+            after = [ "awww-${namespace}.service" ];
+            wantedBy = [ "niri.service" ];
+            serviceConfig = {
+              Type = "oneshot";
+              ExecStart = pkgs.writeShellScript "wallpaper-${namespace}" ''
+                max_retries=60
+                retry=0
+                sleep 0.02
+                while ! ${lib.getExe' pkgs.awww "awww"} img -t center --transition-duration 0.5 --namespace ${namespace} ${image}; do
+                  retry=$((retry + 1))
+                  if [ "$retry" -ge "$max_retries" ]; then
+                    exit 1
+                  fi
+                  sleep 0.02
+                done
+              '';
+            };
+          };
+        };
+    in
     {
       environment.systemPackages = [
         pkgs.hyprpicker
+        pkgs.wl-clipboard
         pkgs.wlsunset
         pkgs.xwayland-satellite
         pkgs.grim
         pkgs.slurp
         pkgs.awww
+        pkgs.brightnessctl
+        pkgs.rose-pine-cursor
+        pkgs.wl-mirror
+        pkgs.jq
       ];
       programs.niri = {
         enable = true;
         package =
           self.packages.${pkgs.stdenv.hostPlatform.system}."niri-${config.style.keyboard}-${config.style.theme}";
       };
+      # Launch the awww daemon and set the wallpaper
+      systemd.user.services =
+        wallpaper-layer {
+          namespace = "workspace";
+          image = ../wallpapers/amora-b-celeste-7.jpg;
+        }
+        // wallpaper-layer {
+          namespace = "backdrop";
+          image = ../wallpapers/amora-b-celeste-case.jpg;
+        };
+      # Set the login command to launch niri
       login.sessionCommand = "niri-session";
     };
 
   perSystem =
     {
       pkgs,
-      lib,
-      self',
       ...
     }:
     let
@@ -43,6 +93,8 @@
           inherit pkgs;
           settings = {
             cursor = {
+              xcursor-theme = "BreezeX-RosePine-Linux";
+              xcursor-size = 24;
               hide-after-inactive-ms = 1000;
             };
             overview = {
@@ -62,27 +114,13 @@
               "5" = _: { };
             };
 
-            spawn-at-startup = [ ];
-            spawn-sh-at-startup = [
-              "awww-daemon
-              && awww img ${toString ../wallpapers/amora-b-celeste-7.jpg}
-              && awww --namespace 'backdrop' img ${toString ../wallpapers/amora-b-celeste-case.jpg}"
-            ];
+            spawn-at-startup = [ "waybar" ];
+            spawn-sh-at-startup = [ ];
             input = import ./_input.nix;
             layout = import ./_layout.nix shared.themes.${theme};
             binds = import ./_binds.nix keyboard;
-            window-rules = [
-              {
-                geometry-corner-radius = 10;
-                clip-to-geometry = true;
-              }
-            ];
-            layer-rules = [
-              {
-                matches = [ { namespace = "backdrop"; } ];
-                place-within-backdrop = true;
-              }
-            ];
+            window-rules = import ./_window_rules.nix;
+            layer-rules = import ./_layer_rules.nix;
           };
         };
     in

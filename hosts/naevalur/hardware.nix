@@ -8,6 +8,8 @@
       boot.loader = {
         grub.enable = false;
         systemd-boot.enable = true;
+        # set console size
+        systemd-boot.consoleMode = "0";
         efi.canTouchEfiVariables = false;
       };
 

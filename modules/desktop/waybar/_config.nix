@@ -1,4 +1,6 @@
-theme: {
+{ pkgs, theme }:
+{
+  layer = "top";
   margin-top = 5;
   margin-left = 6;
   margin-right = 6;
@@ -7,15 +9,13 @@ theme: {
     "custom/logo"
     "user"
     "battery"
-    "memory"
-    "cpu"
-    "temperature"
     "backlight"
     "idle_inhibitor"
     "privacy"
   ];
   modules-center = [
     "hyprland/workspaces"
+    "niri/workspaces"
   ];
   modules-right = [
     "pulseaudio"
@@ -99,7 +99,7 @@ theme: {
     };
   };
   cpu = {
-    format = "{usage}% CPU";
+    format = " {usage}%";
     tooltip = false;
   };
   temperature = {
@@ -108,7 +108,7 @@ theme: {
     tooltip = false;
   };
   memory = {
-    format = "{}% RAM";
+    format = " {}%";
   };
   power-profiles-daemon = {
     format = "{icon}";
@@ -141,12 +141,12 @@ theme: {
       warning = 30;
       critical = 15;
     };
-    format = "{capacity}% {icon} {power= >5}W";
-    format-warning = " {capacity}% {icon} {power= >5}W";
-    format-critical = " {capacity}% {icon} {power= >5}W";
-    format-full = "{capacity}% {icon} {power= >5}W";
-    format-charging = " {capacity}% {icon} {power= >6}W";
-    format-plugged = " {capacity}% {icon} {power= >6}W";
+    format = "{capacity}% {icon} {power}W";
+    format-warning = " {capacity}% {icon} {power}W";
+    format-critical = " {capacity}% {icon} {power}W";
+    format-full = "{capacity}% {icon} {power}W";
+    format-charging = " {capacity}% {icon} {power}W";
+    format-plugged = " {capacity}% {icon} {power}W";
     format-icons = [
       " "
       " "
@@ -168,11 +168,12 @@ theme: {
   network = {
     format-wifi = "{essid} ({signalStrength}%) 󰖩";
     format-ethernet = "Connected";
-    tooltip-format-wifi = "Wifi= {ifname} via {gwaddr} at {frequency}GHz\nIP Address= {ipaddr}/{cidr}\nSubnetmask= {netmask}";
-    tooltip-format-ethernet = "Ethernet= {ifname}/{cidr} via {gwaddr}";
+    tooltip-format-wifi = "Wifi: {essid}\n{ifname} via {gwaddr} at {frequency}GHz\nIP Address= {ipaddr}/{cidr}\nSubnetmask= {netmask}";
+    tooltip-format-ethernet = "Ethernet: {ifname}/{cidr} via {gwaddr}";
     tooltip-format-disconnected = "Disconnected";
     format-linked = "{ifname} (No IP)";
     format-disconnected = " Disconnected";
+    max-length = 12;
   };
   pulseaudio = {
     format = "{volume}%   {format_source}";
@@ -186,7 +187,7 @@ theme: {
     on-click = "uwsm app -- pavucontrol";
   };
   user = {
-    format = "  {user}  ";
+    format = " {user} ";
     interval = 60;
     open-on-click = false;
     tooltip = false;
@@ -194,6 +195,15 @@ theme: {
   "custom/logo" = {
     format = "  ";
     tooltip = true;
-    tooltip-format = "I use NixOS btw";
+    tooltip-format = "I use NixOS btw\n{text}";
+    return-type = "json";
+    interval = 5;
+    exec = pkgs.writeShellScript "system-info" ''
+      #!/usr/bin/env bash
+      cpu_usage=$(top -bn1 | grep "Cpu(s)" | sed "s/.*, *\([0-9.]*\)%* id.*/\1/" | awk '{print 100 - $1"%"}')
+      ram_usage=$(free -m | awk 'NR==2{printf "%.2f%% (used %.2fGib / %.2fGib)", $3*100/$2, $3/1024, $2/1024 }')
+      cpu_temp=$(sensors | awk '/Package id 0/{print $4}' | sed 's/+//;s/°C//')
+      echo "{\"text\":\"CPU: $cpu_usage\nRAM: $ram_usage\nCPU Temperature: $cpu_temp°C\"}"
+    '';
   };
 }

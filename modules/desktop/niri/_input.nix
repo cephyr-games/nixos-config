@@ -1,8 +1,11 @@
 {
   keyboard = {
     xkb = {
-      layout = "ge";
+      layout = "de";
     };
+  };
+  touchpad = {
+    click-method = "clickfinger";
   };
   warp-mouse-to-focus = _: { };
   focus-follows-mouse = _: {

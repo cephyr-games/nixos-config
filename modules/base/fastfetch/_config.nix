@@ -5,7 +5,7 @@ let
     name:
     "{#dim_blue}[+${r 22 "-"}<{{  {#reset_blue}${padCenter 16 name}{#dim_blue}  }>${r 22 "-"}+]{#}";
   footer = "{#dim_blue}\\${r 10 "_"}${r 50 " "}${r 10 "_"}/{#}";
-  makeKey = name: "   > ${name}";
+  makeKey = name: "    > ${name}";
   padCenter =
     width: s:
     let
@@ -23,7 +23,7 @@ in
     source = "${./nix_logo.txt}";
     height = 20;
     padding = {
-      top = 6;
+      top = 4;
       left = 1;
       right = 1;
     };
@@ -61,7 +61,7 @@ in
       width = 8;
     };
     key = {
-      width = 21;
+      width = 20;
     };
   };
   modules = [
@@ -94,37 +94,32 @@ in
     {
       type = "kernel";
       key = makeKey "Kernel";
-      keyColor = "green";
+      keyColor = "cyan";
     }
     {
       type = "bootmgr";
-      key = makeKey "Boot Manager";
-      keyColor = "green";
+      key = makeKey "Boot";
+      keyColor = "cyan";
       format = "{1}";
     }
     {
       type = "wm";
       key = makeKey "WM";
-      keyColor = "magenta";
+      keyColor = "cyan";
     }
     {
       type = "uptime";
       key = makeKey "Uptime";
-      keyColor = "magenta";
+      keyColor = "green";
     }
     {
       type = "terminal";
       key = makeKey "Terminal";
-      keyColor = "cyan";
+      keyColor = "green";
     }
     {
       type = "shell";
       key = makeKey "Shell";
-      keyColor = "cyan";
-    }
-    {
-      type = "localip";
-      key = makeKey "Local IP";
       keyColor = "green";
     }
     {
@@ -184,54 +179,7 @@ in
     {
       type = "poweradapter";
       key = makeKey "Power Adapter";
-      keyColor = "red";
-    }
-    {
-      type = "break";
-    }
-    {
-      type = "title";
-      format = "${makeHeader "Theme"}";
-    }
-    {
-      type = "theme";
-      key = makeKey "GTK Theme";
-      keyColor = "blue";
-    }
-    {
-      type = "wmtheme";
-      key = makeKey "WM Theme";
-      keyColor = "cyan";
-    }
-    {
-      type = "de";
-      key = makeKey "DE";
-      keyColor = "cyan";
-    }
-    {
-      type = "font";
-      key = makeKey "Font";
-      keyColor = "blue";
-    }
-    {
-      type = "terminalfont";
-      key = makeKey "Terminal Font";
-      keyColor = "blue";
-    }
-    {
-      type = "icons";
-      key = makeKey "Icons";
-      keyColor = "magenta";
-    }
-    {
-      type = "cursor";
-      key = makeKey "Cursor";
-      keyColor = "magenta";
-    }
-    {
-      type = "locale";
-      key = makeKey "Locale";
-      keyColor = "magenta";
+      keyColor = "green";
     }
     {
       type = "break";

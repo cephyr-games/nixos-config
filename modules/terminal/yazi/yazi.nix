@@ -8,13 +8,15 @@
   flake.nixosModules.terminal =
     {
       pkgs,
-      lib,
       config,
       ...
     }:
     {
       environment.systemPackages = [
         self.packages.${pkgs.stdenv.hostPlatform.system}."yazi-${config.style.keyboard}-${config.style.theme}"
+        pkgs.dragon-drop
+        pkgs.gzip
+        pkgs.p7zip
       ];
     };
 
@@ -22,7 +24,6 @@
     {
       pkgs,
       lib,
-      self',
       ...
     }:
     let
@@ -41,9 +42,20 @@
         };
     in
     {
-      packages = shared.mkVariants {
-        basename = "yazi";
-        inherit mk;
-      };
+      packages =
+        shared.mkVariants {
+          basename = "yazi";
+          inherit mk;
+        }
+        // {
+          archiver = pkgs.writeShellApplication {
+            name = "archiver";
+            text = builtins.readFile ./archiver.sh;
+          };
+          yank-file = pkgs.writeShellApplication {
+            name = "yank-file";
+            text = builtins.readFile ./yank-file.sh;
+          };
+        };
     };
 }

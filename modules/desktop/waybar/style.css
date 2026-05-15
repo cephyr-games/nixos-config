@@ -84,6 +84,7 @@ button {
       3px 0px 10px 2px alpha(@light_highlight, 0.7);
   }
 }
+#user,
 #clock,
 #idle_inhibitor,
 #battery,
@@ -102,6 +103,7 @@ button {
   transition: all 0.3s ease;
   text-shadow: 2px 4px 2px alpha(@dark_base, 1);
 }
+#user:hover,
 #clock:hover ,
 #battery:hover ,
 #idle_inhibitor:hover,
