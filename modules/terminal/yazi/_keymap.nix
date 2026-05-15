@@ -1,33 +1,37 @@
-{ lib, keyboard }:
+keyboard:
 let
+  merge =
+    a: b:
+    a
+    // b
+    // (builtins.mapAttrs (
+      bName: bValue:
+      let
+        aValue = a.${bName} or null;
+      in
+      if builtins.isAttrs aValue && builtins.isAttrs bValue then
+        merge aValue bValue
+      else if builtins.isList aValue && builtins.isList bValue then
+        aValue ++ bValue
+      else
+        bValue
+    ) b);
   base = {
     mgr = {
       prepend_keymap = [
         {
-          on = "S";
-          run = "search --via=fd";
-          desc = "Search files by name via fd";
-        }
-        {
-          on = "s";
-          run = ''shell "$SHELL" --block'';
-          desc = "Open shell here";
-        }
-        {
           on = "Y";
-          run = ''
-            shell 'dragon-drop -x -A "$@"' --confirm
-          '';
+          run = ''shell  "dragon-drop -x -A \"$@\"" --confirm'';
+          desc = "dragon drop it!";
         }
         {
           on = "T";
-          run = ''
-            shell '$TERMINAL --working-directory "%d"' --confirm
-          '';
+          run = ''shell "alacritty --working-directory \"%d\"" --confirm'';
+          desc = "New Terminal in current directory.";
         }
         {
           on = "A";
-          run = ''shell 'archiver  "$@" # enter format (7z, tar.gz, zip)' --cursor=9 --interactive'';
+          run = ''shell "archiver  \"$@\" # enter format (7z, tar.gz, zip)" --cursor=9 --interactive'';
           desc = "Archive selected file(s) with format prompt";
         }
       ];
@@ -260,7 +264,7 @@ let
     };
   };
 in
-lib.recursiveUpdate base (
+merge base (
   if keyboard == "colemak" then
     colemak
   else if keyboard == "qwerty" then

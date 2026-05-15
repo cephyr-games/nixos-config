@@ -23,7 +23,6 @@
   perSystem =
     {
       pkgs,
-      lib,
       ...
     }:
     let
@@ -33,29 +32,15 @@
           inherit pkgs;
           settings = {
             yazi = import ./_config.nix;
-            keymap = import ./_keymap.nix {
-              inherit lib;
-              inherit keyboard;
-            };
+            keymap = import ./_keymap.nix keyboard;
             theme = import ./_theme.nix shared.themes.${theme};
           };
         };
     in
     {
-      packages =
-        shared.mkVariants {
-          basename = "yazi";
-          inherit mk;
-        }
-        // {
-          archiver = pkgs.writeShellApplication {
-            name = "archiver";
-            text = builtins.readFile ./archiver.sh;
-          };
-          yank-file = pkgs.writeShellApplication {
-            name = "yank-file";
-            text = builtins.readFile ./yank-file.sh;
-          };
-        };
+      packages = shared.mkVariants {
+        basename = "yazi";
+        inherit mk;
+      };
     };
 }

@@ -10,8 +10,6 @@
     }:
     {
       environment.systemPackages = [
-        pkgs.fzf
-        pkgs.dex
         self.packages.${pkgs.stdenv.hostPlatform.system}.runner
       ];
     };
@@ -24,6 +22,10 @@
     {
       packages.runner = pkgs.writeShellApplication {
         name = "r";
+        runtimeInputs = with pkgs; [
+          fzf
+          dex
+        ];
         text = ''
           #!/usr/bin/env bash
           selected_app=$(find /run/current-system/sw/share/applications/ | fzf --style=minimal --color='

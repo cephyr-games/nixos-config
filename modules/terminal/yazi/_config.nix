@@ -17,14 +17,14 @@
   opener = {
     edit = [
       {
-        run = ''helix "$1"'';
-        desc = "helix";
+        run = "hx $1";
+        desc = "hx";
         block = true;
       }
     ];
     pdf-open = [
       {
-        run = ''uwsm app -- firefox "$1"'';
+        run = "zen-browser $1";
         desc = "open firefox";
         block = false;
       }
