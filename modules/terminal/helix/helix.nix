@@ -18,6 +18,10 @@
         pkgs.nixd
         pkgs.netcat-openbsd
       ];
+      environment.variables = {
+        EDITOR = "hx";
+        VISUAL = "hx";
+      };
     };
 
   perSystem =
