@@ -44,11 +44,11 @@ let
     "Mod+F".spawn = "alacritty";
     "Mod+P".spawn-sh = "alacritty -e sh -c \"r && sleep 0.1\"";
     "Mod+G".spawn = "signal-desktop";
-    "Mod+Alt+L".spawn-sh = "veila lock";
+    "Mod+Shift+Ctrl+L".spawn-sh = "veila lock";
 
     # middle row left
     "Mod+A".spawn-sh =
-      "if pgrep -x wlsunset >/dev/null; then pkill wlsunset else wlsunset -t 3500 & fi";
+      "if pgrep -x wlsunset >/dev/null; then pkill wlsunset; else wlsunset -t 3500 -S 00:00 -s 00:00 & fi";
     "Mod+S" = _: {
       props.allow-when-locked = true;
       content.spawn-sh = "grim -g $(slurp) - | wl-copy";
