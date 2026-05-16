@@ -56,6 +56,7 @@
         pkgs.xwayland-satellite
         pkgs.grim
         pkgs.slurp
+        pkgs.swayidle
         pkgs.awww
         pkgs.brightnessctl
         pkgs.rose-pine-cursor
@@ -76,6 +77,19 @@
         // wallpaper-layer {
           namespace = "backdrop";
           image = ../wallpapers/amora-b-celeste-case.jpg;
+        }
+        # swayidle idle daemon
+        // {
+          swayidle = {
+            partOf = [ "graphical-session.target" ];
+            after = [ "graphical-session.target" ];
+            requisite = [ "graphical-session.target" ];
+            wantedBy = [ "niri.service" ];
+            serviceConfig = {
+              Type = "simple";
+              ExecStart = "${lib.getExe pkgs.swayidle} -w timeout 601 'niri msg action power-off-monitors' timeout 600 'veila lock --wait-ready' before-sleep 'veila lock --wait-ready'";
+            };
+          };
         };
       # Set the login command to launch niri
       login.sessionCommand = "niri-session";
@@ -99,6 +113,16 @@
             };
             overview = {
               zoom = 0.35;
+            };
+            # laptop switches
+            switch-events = {
+              lid-close = {
+                spawn = [
+                  "veila"
+                  "lock"
+                  "--wait-ready"
+                ];
+              };
             };
             gestures.hot-corners.off = _: { };
             hotkey-overlay.skip-at-startup = _: { };

@@ -45,7 +45,7 @@ theme: {
       mask_color = "#ffffff";
       font_family = "Mango";
       font_weight = 400;
-      font_size = 26;
+      font_size = 24;
       halign = "center";
       valign = "bottom";
       x = 0;
