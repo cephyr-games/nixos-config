@@ -100,6 +100,7 @@
             overview = {
               zoom = 0.35;
             };
+            gestures.hot-corners.off = _: { };
             hotkey-overlay.skip-at-startup = _: { };
             prefer-no-csd = _: { };
             screenshot-path = "~/pictures/screenshots/screenshot_%Y-%m-%d_%H-%M-%S.png";
