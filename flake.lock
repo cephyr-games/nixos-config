@@ -123,11 +123,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1777921095,
-        "narHash": "sha256-58dc0vAiBtF31MBPkEO/zs7c4BPxTJntWPICg7hmyP0=",
+        "lastModified": 1778871648,
+        "narHash": "sha256-Uy96dLLGzj57aIDdcQtuI3uPx5Uyvm5X0g4u9uV5zfc=",
         "owner": "naurissteins",
         "repo": "Veila",
-        "rev": "025f5d4389807f9ed30f9521010eef1878f2e8ae",
+        "rev": "aa28f1c0fb3b5c7827fc19fc98b70d66ce154dd9",
         "type": "github"
       },
       "original": {

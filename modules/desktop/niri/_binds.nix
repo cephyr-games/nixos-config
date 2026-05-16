@@ -44,7 +44,7 @@ let
     "Mod+F".spawn = "alacritty";
     "Mod+P".spawn-sh = "alacritty -e sh -c \"r && sleep 0.1\"";
     "Mod+G".spawn = "signal-desktop";
-    "Mod+Alt+L".spawn = "veila";
+    "Mod+Alt+L".spawn-sh = "veila lock";
 
     # middle row left
     "Mod+A".spawn-sh =
