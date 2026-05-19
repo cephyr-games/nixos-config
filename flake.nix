@@ -45,8 +45,8 @@
 
         # physical keyboard layouts
         keyboards = {
-          qwerty = { };
-          colemak = { };
+          qwerty = import ./keyboards/qwerty.nix;
+          colemak = import ./keyboards/colemak.nix;
         };
 
         # generate package variants for every theme

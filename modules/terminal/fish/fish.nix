@@ -12,6 +12,7 @@
     {
       environment.systemPackages = [
         self.packages.${pkgs.stdenv.hostPlatform.system}.fish
+        pkgs.zoxide
       ];
     };
 

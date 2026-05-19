@@ -87,7 +87,7 @@
             wantedBy = [ "niri.service" ];
             serviceConfig = {
               Type = "simple";
-              ExecStart = "${lib.getExe pkgs.swayidle} -w timeout 601 'niri msg action power-off-monitors' timeout 600 'veila lock --wait-ready' before-sleep 'veila lock --wait-ready'";
+              ExecStart = "${lib.getExe pkgs.swayidle} -w timeout 601 'niri msg action power-off-monitors' timeout 600 'veila lock --wait-ready' timeout 630 'systemctl suspend' before-sleep 'veila lock --wait-ready'";
             };
           };
         };

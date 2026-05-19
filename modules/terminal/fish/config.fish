@@ -18,3 +18,5 @@ function fish_greeting
     echo "Welcome to fish :)"
     set_color --reset
 end
+
+zoxide init fish | source

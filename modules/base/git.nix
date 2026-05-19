@@ -7,8 +7,6 @@
     {
       environment.systemPackages = [
         pkgs.git
-        pkgs.tig
-        pkgs.tokei
       ];
     };
 }
