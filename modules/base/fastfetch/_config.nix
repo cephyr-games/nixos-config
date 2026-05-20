@@ -23,7 +23,7 @@ in
     source = "${./nix_logo.txt}";
     height = 20;
     padding = {
-      top = 4;
+      top = 3;
       left = 1;
       right = 1;
     };
