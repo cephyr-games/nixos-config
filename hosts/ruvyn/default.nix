@@ -17,6 +17,7 @@
       base
       home-manager
       desktop
+      veila
       terminal
       signal
       zen-browser
