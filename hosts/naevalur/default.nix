@@ -20,6 +20,7 @@
       terminal
       signal
       firefox
+      steam
     ];
   };
 }

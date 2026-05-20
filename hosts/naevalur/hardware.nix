@@ -31,6 +31,8 @@
         builtins.elem (lib.getName pkg) [
           "nvidia-x11"
           "nvidia-settings"
+          "steam"
+          "steam-unwrapped"
         ];
       # Enable OpenGL
       hardware.graphics = {
