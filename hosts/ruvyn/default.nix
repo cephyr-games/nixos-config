@@ -17,7 +17,6 @@
       base
       home-manager
       desktop
-      veila
       terminal
       signal
       firefox

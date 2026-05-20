@@ -13,6 +13,7 @@
           home.stateVersion = "26.05";
           gtk = {
             enable = true;
+            colorScheme = "dark";
             theme = {
               name = "catppuccin-frappe-blue-standard";
               package = pkgs.catppuccin-gtk;
