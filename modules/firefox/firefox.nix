@@ -1,17 +1,16 @@
 {
   self,
-  inputs,
   ...
 }:
 {
-  flake.nixosModules.zen-browser =
+  flake.nixosModules.firefox =
     {
       pkgs,
       ...
     }:
     {
       environment.systemPackages = [
-        self.packages.${pkgs.stdenv.hostPlatform.system}.zen-browser
+        self.packages.${pkgs.stdenv.hostPlatform.system}.firefox
         self.packages.${pkgs.stdenv.hostPlatform.system}.gopen
       ];
     };
@@ -20,13 +19,10 @@
     {
       pkgs,
       lib,
-      system,
       ...
     }:
     {
-      packages.zen-browser =
-        pkgs.wrapFirefox inputs.zen-browser.packages.${system}.zen-browser-unwrapped
-          (import ./_config.nix lib);
+      packages.firefox = pkgs.wrapFirefox pkgs.firefox-unwrapped (import ./_config.nix lib);
       packages.gopen = pkgs.writeShellApplication {
         name = "gopen";
         text = builtins.readFile ./gopen.sh;

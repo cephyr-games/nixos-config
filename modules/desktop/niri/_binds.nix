@@ -40,7 +40,7 @@ let
     # top row left
     "Mod+Q".spawn-sh = "alacritty -e yazi";
     "Mod+Shift+Q".spawn-sh = "kitty -e yazi";
-    "Mod+W".spawn = "zen";
+    "Mod+W".spawn = "firefox";
     "Mod+F".spawn = "alacritty";
     "Mod+P".spawn-sh = "alacritty -e sh -c \"r && sleep 0.1\"";
     "Mod+G".spawn = "signal-desktop";

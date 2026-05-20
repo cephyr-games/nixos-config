@@ -1,3 +1,4 @@
+
 #!/usr/bin/env bash
 
 set -e
@@ -54,7 +55,7 @@ main() {
     
     echo "Opening: $web_url"
     
-    zen "$web_url" > /dev/null 2> /dev/null & disown
+    firefox "$web_url" > /dev/null 2> /dev/null & disown
 }
 
 if [[ "$1" == "-h" ]] || [[ "$1" == "--help" ]]

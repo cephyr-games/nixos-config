@@ -20,7 +20,7 @@
       veila
       terminal
       signal
-      zen-browser
+      firefox
     ];
   };
 }

@@ -19,7 +19,7 @@
       desktop
       terminal
       signal
-      zen-browser
+      firefox
     ];
   };
 }

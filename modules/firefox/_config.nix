@@ -9,8 +9,15 @@ let
   };
 
   prefs = {
-    # zen specific
-    "zen.welcome-screen.seen" = true;
+    # dark theme
+    "extensions.activeThemeID" = "firefox-compact-dark@mozilla.org";
+    # block all ai 'features' by default
+    "browser.ai.control.default" = "blocked";
+    # block sponsored
+    "browser.newtabpage.activity-stream.showSponsored" = false;
+    "browser.newtabpage.activity-stream.showSponsoredCheckboxes" = false;
+    "browser.newtabpage.activity-stream.showSponsoredTopSites" = false;
+    "browser.newtabpage.activity-stream.system.showSponsored" = false;
     # Check these out at about:config
     # refers to https://wiki.archlinux.org/title/Firefox/Privacy
     "dom.security.https_only_mode" = true;
