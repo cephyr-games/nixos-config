@@ -81,6 +81,7 @@ let
     # dangerous keybinds
     "Mod+Shift+Ctrl+I".quit = _: { skip-confirmation = true; };
     "Mod+Shift+Ctrl+Y".spawn-sh = "shutdown now";
+    "Mod+Shift+Ctrl+Z".spawn-sh = "veila lock --wait-ready && systemctl suspend";
 
     # workspaces / windows / columns
     "Mod+1".focus-workspace = "1";
@@ -132,15 +133,27 @@ let
     # special keys
     XF86AudioRaiseVolume = _: {
       props.allow-when-locked = true;
-      content.spawn-sh = "wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.1+ -l 1.0";
+      content.spawn-sh = "wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.05+ -l 1.0";
     };
     XF86AudioLowerVolume = _: {
       props.allow-when-locked = true;
-      content.spawn-sh = "wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.1-";
+      content.spawn-sh = "wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.05-";
+    };
+    "Shift+XF86AudioRaiseVolume" = _: {
+      props.allow-when-locked = true;
+      content.spawn-sh = "wpctl set-volume @DEFAULT_AUDIO_SOURCE@ 0.05+ -l 1.0";
+    };
+    "Shift+XF86AudioLowerVolume" = _: {
+      props.allow-when-locked = true;
+      content.spawn-sh = "wpctl set-volume @DEFAULT_AUDIO_SOURCE@ 0.05-";
     };
     XF86AudioMute = _: {
       props.allow-when-locked = true;
       content.spawn-sh = "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle";
+    };
+    "Shift+XF86AudioMute" = _: {
+      props.allow-when-locked = true;
+      content.spawn-sh = "wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle";
     };
     XF86AudioMicMute = _: {
       props.allow-when-locked = true;

@@ -3,6 +3,7 @@
     { pkgs, lib, ... }:
     {
       nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
+      networking.hostName = "naevalur";
 
       # systemd-boot is chainloaded by the primary boot manager GRUB (external)
       boot.loader = {
