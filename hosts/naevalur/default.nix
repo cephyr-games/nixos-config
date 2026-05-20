@@ -21,6 +21,7 @@
       signal
       firefox
       steam
+      minecraft
     ];
   };
 }
