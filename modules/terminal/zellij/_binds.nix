@@ -193,7 +193,7 @@ in
   (sectionExcept [ "locked" "resize" ] [ (bind "Ctrl Shift z" { SwitchToMode = [ "resize" ]; }) ])
   (sectionExcept [ "normal" "locked" "entersearch" ] [ (bindn "enter" { }) ])
   (sectionExcept [ "normal" "locked" "entersearch" "renametab" "renamepane" ] [ (bindn "esc" { }) ])
-  (sectionExcept [ "pane" "tmux" ] [ (bindn "x" { CloseFocus = _: { }; }) ])
+  (sectionAmong [ "pane" "tmux" ] [ (bindn "x" { CloseFocus = _: { }; }) ])
   (sectionAmong
     [ "scroll" "search" ]
     [
