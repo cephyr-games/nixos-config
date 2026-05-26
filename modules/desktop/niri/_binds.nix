@@ -51,7 +51,7 @@ let
       "if pgrep -x wlsunset >/dev/null; then pkill wlsunset; else wlsunset -t 3500 -S 00:00 -s 00:00 & fi";
     "Mod+S" = _: {
       props.allow-when-locked = true;
-      content.spawn-sh = "grim -g $(slurp) - | wl-copy";
+      content.spawn-sh = "grim -g \"$(slurp)\" - | wl-copy";
     };
     "Mod+Ctrl+S".spawn-sh = "grim -g $(slurp)";
     "Mod+Shift+S" = _: {
