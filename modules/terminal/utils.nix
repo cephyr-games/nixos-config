@@ -1,15 +1,11 @@
 {
-  self,
-  inputs,
-  ...
-}:
-{
   flake.nixosModules.terminal =
     {
       pkgs,
       ...
     }:
     {
+      services.udisks2.enable = true;
       environment.systemPackages = [
         pkgs.tig
         pkgs.tokei
