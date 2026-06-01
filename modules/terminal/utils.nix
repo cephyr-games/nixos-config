@@ -8,6 +8,7 @@
       services.udisks2.enable = true;
       environment.systemPackages = [
         pkgs.tig
+        pkgs.python3
         pkgs.tokei
         pkgs.fzf
         pkgs.ripgrep
