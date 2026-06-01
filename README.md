@@ -41,8 +41,8 @@ Settings and programs with similar use cases, that will never need to be split, 
 
 ### Hosts
 Each host machine has a directory in [hosts](hosts), with three files:
-- disko.nix, that defines the file system as a module with name '<host>-disko'
-- hardware.nix, that defines hardware specific settings, like bootloader and firmware as a module with name '<host>-hardware'
+- disko.nix, that defines the file system as a module with name '\<host>-disko'
+- hardware.nix, that defines hardware specific settings, like bootloader and firmware as a module with name '\<host>-hardware'
 - default.nix, that includes the two previous modules, sets `theme` and `keyboard` options and defines which modules to include.
 
 Two hosts exist currently, with non-descriptive names to avoid misleading names, should their purpose ever change:
@@ -87,17 +87,17 @@ Follow the official [NixOS manual](https://nixos.org/manual/nixos/stable/#ch-ins
 Once you are booted into the image, and have a terminal with internet connection, follow these installation steps instead:
 - Run `lsblk` to verify the name of the block device you want to install to (device, not partition!).
 - Run `nix --extra-experimental-features 'nix-command flakes' run 'github:nix-community/disko/latest#disko-install' -- --write-efi-boot-entries --flake <flake> --mode format --disk main <device>` to install the configuration.
-  - <flake>: the flake defining your NixOS config and its name, e.g. github:cephyr-games/nixos-config#ruvyn
-  - <device>: the block device that will be **irreversibly overwritten** with the new NixOS system, e.g. /dev/nvme0n1
+  - \<flake>: the flake defining your NixOS config and its name, e.g. github:cephyr-games/nixos-config#ruvyn
+  - \<device>: the block device that will be **irreversibly overwritten** with the new NixOS system, e.g. /dev/nvme0n1
   - Omit '--write-efi-boot-entries' if the bootloader of NixOS should not have an efi boot entry, for example to instead chainload it from another bootloader.
   - You will be prompted for the LUKS passphrase by the installer.
   - Your entire NixOS config will be evaluated into /nix/store before installation can start.
     Since this directory lives in a tmpfs, installation may fail if you have insufficient RAM for that.
     In this case, either remove non-vital modules and pull them in after the system is installed, after which /nix/store will no longer live in RAM;
     or copy /nix/store onto an external drive (/nix/store is not empty, it contains all the tools of the install image) and mount that in the place of /nix/store.
-  - Run `passwd` to set the root password. **You will not be able to login without a password!**
-  - Run `passwd <user>` for every user to also set their passwords.
-  - Reboot into your new system.
+- Run `passwd` to set the root password. **You will not be able to login without a password!**
+- Run `passwd <user>` for every user to also set their passwords.
+- Reboot into your new system.
 
 ## Config management
 Installation does not clone the repository, this must be done manually.
