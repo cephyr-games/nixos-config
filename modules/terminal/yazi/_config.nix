@@ -46,7 +46,7 @@
     rules = [
       # folder
       {
-        name = "*/";
+        url = "*/";
         use = [
           "edit"
           "open"
@@ -125,7 +125,7 @@
       }
       # Fallback
       {
-        name = "*";
+        url = "*";
         use = [
           "open"
           "reveal"

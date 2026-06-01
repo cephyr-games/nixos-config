@@ -196,7 +196,7 @@ theme: {
       }
       # special
       {
-        name = "*";
+        url = "*";
         is = "orphan";
         bg = "red";
       }
