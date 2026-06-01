@@ -1,5 +1,5 @@
 {
-  flake.nixosModules.signal =
+  flake.nixosModules.desktop =
     {
       pkgs,
       ...

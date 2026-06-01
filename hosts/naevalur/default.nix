@@ -14,12 +14,10 @@
       }
       naevalur-disko
       naevalur-hardware
-      base
       home-manager
-      desktop
+      base
       terminal
-      signal
-      firefox
+      desktop
       steam
       minecraft
     ];

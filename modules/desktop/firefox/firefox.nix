@@ -3,7 +3,7 @@
   ...
 }:
 {
-  flake.nixosModules.firefox =
+  flake.nixosModules.desktop =
     {
       pkgs,
       ...
