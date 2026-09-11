@@ -28,6 +28,7 @@
         configFile.content = builtins.readFile ./config.fish;
         abbreviations = rec {
           nixos-add = "git -C ~/.nixos add";
+          nixos-diff = "git -C ~/.nixos diff";
           nixos-commit = "git -C ~/.nixos commit -m";
           nixos-edit = "cd ~/.nixos && zellij";
           nixos-gcc = "sudo nix-collect-garbage --delete-older-than 30d";
