@@ -6,17 +6,17 @@
     }:
     {
       services.udisks2.enable = true;
-      environment.systemPackages = [
-        pkgs.btop
-        pkgs.tig
-        pkgs.python3
-        pkgs.typst
-        pkgs.tokei
-        pkgs.fzf
-        pkgs.ripgrep
-        pkgs.fd
-        pkgs.bat
-        pkgs.dust
+      environment.systemPackages = with pkgs; [
+        bat
+        dust
+        tree
+        fd
+        jq
+        fzf
+        python3
+        ripgrep
+        tig
+        tokei
       ];
     };
 }
