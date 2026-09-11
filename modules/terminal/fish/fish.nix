@@ -26,13 +26,15 @@
         inherit pkgs;
         flags."--no-config" = false;
         configFile.content = builtins.readFile ./config.fish;
-        abbreviations = {
-          nixos-test = "sudo nixos-rebuild test --flake /etc/nixos";
-          nixos-switch = "sudo nixos-rebuild switch --flake /etc/nixos";
-          nixos-status = "sudo git -C /etc/nixos status";
-          nixos-add = "sudo git -C /etc/nixos add";
-          nixos-commit = "sudo git -C /etc/nixos commit -m";
-          nixos-edit = "sudo hx /etc/nixos";
+        abbreviations = rec {
+          nixos-add = "git -C ~/.nixos add";
+          nixos-commit = "git -C ~/.nixos commit -m";
+          nixos-edit = "cd ~/.nixos && zellij";
+          nixos-gcc = "sudo nix-collect-garbage --delete-older-than 30d";
+          nixos-status = "git -C ~/.nixos status";
+          nixos-switch = "sudo nixos-rebuild switch --flake ~/.nixos";
+          nixos-test = "sudo nixos-rebuild test --flake ~/.nixos";
+          nixos-update = "cd ~/.nixos && sudo nix flake update && ${nixos-switch}";
         };
       };
     };
