@@ -1,15 +1,13 @@
-{
-  keyboard = {
-    xkb = {
-      layout = "de";
-    };
-  };
-  touchpad = {
-    click-method = "clickfinger";
-  };
-  focus-follows-mouse = _: {
-    props = {
-      max-scroll-amount = "50%";
-    };
-  };
-}
+/* kdl */ ''
+  input {
+      keyboard {
+          xkb {
+              layout "de"
+          }
+      }
+      touchpad {
+          click-method "clickfinger"
+      }
+      focus-follows-mouse max-scroll-amount="50%"
+  }
+''

@@ -1,48 +1,43 @@
-theme: {
-  gaps = 2;
-  center-focused-column = "never";
+{ theme }: /* kdl */ ''
+  layout {
+      gaps 6
+      center-focused-column "never"
+      background-color "transparent"
 
-  preset-column-widths = [
-    { proportion = 0.33333; }
-    { proportion = 0.5; }
-    { proportion = 0.66667; }
-    { proportion = 1.0; }
-  ];
-  default-column-width = {
-    proportion = 1.0;
-  };
+      preset-column-widths {
+          proportion 0.5
+          proportion 1.0
+      }
+      default-column-width { proportion 1.0; }
 
-  focus-ring.off = _: { };
+      focus-ring { off; }
 
-  border = {
-    width = 2;
-    urgent-color = "#${theme.textRed}";
-    active-gradient = _: {
-      props = [
-        { from = "#${theme.lightMain}"; }
-        { to = "#${theme.lightHighlight}"; }
-        { angle = 45; }
-      ];
-    };
-    inactive-color = "#${theme.darkMain}";
-  };
+      border {
+          width 2.7
+          urgent-color "#${theme.textEmph0}cc"
+          active-gradient from="#${theme.lightMain}cc" to="#${theme.lightHighlight}cc" angle=45
+          inactive-color "#${theme.darkMain}cc"
+      }
 
-  shadow = {
-    on = _: { };
-    softness = 30;
-    spread = 5;
-    offset = _: {
-      props = [
-        { x = 0; }
-        { y = 8; }
-      ];
-    };
-    color = "#${theme.darkBase}";
-  };
-  struts = {
-    left = 6;
-    right = 6;
-    top = 12;
-    bottom = 12;
-  };
-}
+      shadow {
+          on
+          softness 20
+          spread 10
+          offset x=0 y=6
+          color "#${theme.darkBase}a0"
+          inactive-color "#${theme.darkBase}a0"
+      }
+
+      struts {
+          left 6
+          right 6
+          top 6
+          bottom 10
+      }
+
+      insert-hint {
+          on
+          gradient from="#${theme.lightMain}30" to="#${theme.lightHighlight}30" angle=45 relative-to="workspace-view"
+      }
+  }
+''

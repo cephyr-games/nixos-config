@@ -1,4 +1,8 @@
 rec {
+  wallpaper = ./wallpapers/amora-b-celeste-7.jpg;
+  wallpaper-lock = ./wallpapers/amora-b-celeste-8.jpg;
+  wallpaper-overview = ./wallpapers/amora-b-celeste-case.jpg;
+
   darkBase = "060002";
   darkMain = "211111";
   lightBase = "ab3d77";
