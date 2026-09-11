@@ -54,13 +54,13 @@ vec4 open_color(vec3 coords_geo, vec3 size_geo) {
      
     // -- params --
     // delays the start of the wave
-    float shockwave_p_delay = 0.17;
+    float shockwave_p_delay = 0.1;
     // controls overall strenght of the wave
-    float shockwave_strength_f = 0.10;
+    float shockwave_strength_f = 0.08;
     // makes the wave travel further and faster (dependent on window size)
     float shockwave_speed_f = 0.8 * max(size_geo.x, size_geo.y);
     // wave ripple zoom
-    float shockwave_zoom = 0.02;
+    float shockwave_zoom = 0.5;
     // where in the progress should the wave be most prominent
     float p_mask_peak = 0.15;
     // progress peak lenght (plateau lenght)
