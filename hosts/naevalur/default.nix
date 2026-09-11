@@ -12,7 +12,7 @@
         config.style.theme = "celeste";
         config.style.keyboard = "colemak";
         config.desktop.niri.extra = /* kdl */ ''
-          output "eDP-1" {
+          output "DP-1" {
               mode "2560x1440@120.001"
           }
         '';
