@@ -24,7 +24,7 @@
     ];
     pdf-open = [
       {
-        run = "zen-browser $1";
+        run = "firefox $1";
         desc = "open firefox";
         block = false;
       }

@@ -33,7 +33,7 @@ let
     "general.platform.override" = "Win32";
     # hide ip
     "media.peerconnection.ice.default_address_only" = true;
-    "media.peerconnection.enabled" = false; # (breaks discord)
+    "media.peerconnection.enabled" = true; # (setting to false breaks discord)
     # hide previous website
     "network.http.sendRefererHeader" = 0;
     # used for fingerprinting

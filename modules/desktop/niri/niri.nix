@@ -49,19 +49,22 @@
         };
     in
     {
-      environment.systemPackages = [
-        pkgs.hyprpicker
-        pkgs.wl-clipboard
-        pkgs.wlsunset
-        pkgs.xwayland-satellite
-        pkgs.grim
-        pkgs.slurp
-        pkgs.swayidle
-        pkgs.awww
-        pkgs.brightnessctl
-        pkgs.rose-pine-cursor
-        pkgs.wl-mirror
-        pkgs.jq
+      environment.systemPackages = with pkgs; [
+        pavucontrol
+        qpwgraph
+        mako
+        hyprpicker
+        wl-clipboard
+        wlsunset
+        xwayland-satellite
+        grim
+        slurp
+        swayidle
+        awww
+        brightnessctl
+        rose-pine-cursor
+        wl-mirror
+        jq
       ];
       programs.niri = {
         enable = true;
@@ -87,7 +90,7 @@
             wantedBy = [ "niri.service" ];
             serviceConfig = {
               Type = "simple";
-              ExecStart = "${lib.getExe pkgs.swayidle} -w timeout 300 'veila lock --wait-ready' timeout 500 'niri msg action power-off-monitors' timeout 600 'systemctl suspend'";
+              ExecStart = "${lib.getExe pkgs.swayidle} -w timeout 240 'veila lock --wait-ready' timeout 600 'niri msg action power-off-monitors' timeout 1800 'systemctl suspend'";
             };
           };
         };
@@ -139,7 +142,10 @@
               "5" = _: { };
             };
 
-            spawn-at-startup = [ "waybar" ];
+            spawn-at-startup = [
+              "waybar"
+              "mako"
+            ];
             spawn-sh-at-startup = [ ];
             input = import ./_input.nix;
             layout = import ./_layout.nix shared.themes.${theme};

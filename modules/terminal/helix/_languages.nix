@@ -1,10 +1,16 @@
 {
-  language-server.gdscript-lsp = {
-    command = "nc";
-    args = [
-      "127.0.0.1"
-      "6005"
-    ];
+  language-server = {
+    gdscript-lsp = {
+      command = "nc";
+      args = [
+        "127.0.0.1"
+        "6005"
+      ];
+    };
+    rust-analyzer.config = {
+      check.command = "clippy";
+      cargo.features = "all";
+    };
   };
   language = [
     {
@@ -24,7 +30,28 @@
           "--write-stdout"
         ];
       };
-      language-servers = [ "csharp-ls" ];
+      language-servers = [
+        "csharp-ls"
+        "omnisharp"
+      ];
+    }
+    {
+      name = "rust";
+      auto-format = true;
+      scope = "source.rs";
+      roots = [
+        "Cargo.toml"
+        ".git"
+      ];
+      file-types = [ "rs" ];
+      formatter = {
+        command = "rustfmt";
+        args = [
+          "--emit"
+          "stdout"
+        ];
+      };
+      language-servers = [ "rust-analyzer" ];
     }
     {
       name = "gdscript";

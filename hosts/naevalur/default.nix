@@ -20,6 +20,8 @@
       desktop
       steam
       minecraft
+      cad
+      drawing
     ];
   };
 }

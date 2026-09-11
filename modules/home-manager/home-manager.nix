@@ -19,6 +19,11 @@
               package = pkgs.catppuccin-gtk;
             };
           };
+          qt = {
+            enable = true;
+            platformTheme.name = "qtct";
+            style.name = "Fusion";
+          };
           xdg.userDirs = {
             enable = true;
             createDirectories = true;
