@@ -98,7 +98,7 @@
         };
 
         systemd.user.services = {
-          "awww" = {
+          awww = {
             partOf = [ "graphical-session.target" ];
             after = [ "graphical-session.target" ];
             requisite = [ "graphical-session.target" ];
@@ -108,7 +108,7 @@
               ExecStart = "${lib.getExe' pkgs.awww "awww-daemon"}";
             };
           };
-          "wallpaper" = {
+          wallpaper = {
             partOf = [ "awww.service" ];
             after = [ "awww.service" ];
             wantedBy = [ "niri.service" ];
@@ -128,8 +128,6 @@
               '';
             };
           };
-        }
-        // {
           swayidle = {
             partOf = [ "graphical-session.target" ];
             after = [ "graphical-session.target" ];
