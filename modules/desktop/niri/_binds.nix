@@ -34,7 +34,7 @@
       // mirror screen
       "Mod+Alt+M" repeat=false { spawn-sh "wl-mirror $(niri msg --json focused-output | jq -r .name)"; }
 
-      "Mod+A" { spawn-sh "pkill wlsunset || wlsunset -t 2500 -T 3000 -g 0.7"; }
+      "Mod+A" { spawn-sh "pkill wlsunset || wlsunset -t 2500 -T 3000"; }
 
       "Mod+Shift+K" { quit skip-confirmation=true; }
       "Mod+Shift+Ctrl+K" { spawn-sh "shutdown now"; }
