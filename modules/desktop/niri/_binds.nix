@@ -14,6 +14,9 @@
       "Mod+Shift+T" { switch-preset-column-width-back; }
 
       "Mod+B" repeat=false { toggle-overview; }
+      // switch layout
+      "Mod+Space" { switch-layout "next"; }
+      "Mod+Shift+Space" { switch-layout "prev"; }
 
       // toggle focus to the other monitor
       "Mod+Tab" { focus-monitor-previous; }

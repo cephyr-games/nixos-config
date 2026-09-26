@@ -2,7 +2,8 @@
   input {
       keyboard {
           xkb {
-              layout "de"
+              layout "de,us,us"
+              variant ",,colemak"
           }
       }
       touchpad {
