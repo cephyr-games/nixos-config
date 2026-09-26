@@ -1,5 +1,4 @@
 {
-  self,
   inputs,
   shared,
   ...
@@ -11,40 +10,23 @@
       config,
       ...
     }:
-    {
-      environment.systemPackages = [
-        self.packages.${pkgs.stdenv.hostPlatform.system}."waybar-${config.style.theme}"
-        pkgs.lm_sensors
-        pkgs.pavucontrol
-      ];
-    };
-
-  perSystem =
-    {
-      pkgs,
-      ...
-    }:
     let
-      mk =
-        theme:
-        inputs.wrapper-modules.wrappers.waybar.wrap {
-          inherit pkgs;
-          settings = import ./_config.nix {
-            inherit pkgs;
-            theme = shared.themes.${theme};
-          };
-          "style.css".content =
-            import ./_style.nix {
-              theme = shared.themes.${theme};
-              logo_url = toString ./nix_logo.png;
-            }
-            + builtins.readFile ./style.css;
+      theme = shared.themes.${config.style.theme};
+
+      style = import ./_style.nix { inherit theme; };
+      settings = import ./_config.nix { inherit pkgs theme; };
+
+      waybar = inputs.wrapper-modules.wrappers.waybar.wrap {
+        inherit pkgs settings;
+        # upstream wrapper ignores "style.css".content and generates an empty
+        # style file, so point --style at the actual css file instead
+        "style.css" = {
+          content = style;
+          path = pkgs.writeText "waybar-style.css" style;
         };
+      };
     in
     {
-      packages = shared.mkThemeVariants {
-        basename = "waybar";
-        inherit mk;
-      };
+      environment.systemPackages = [ waybar ];
     };
 }
