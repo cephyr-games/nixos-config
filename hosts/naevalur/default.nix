@@ -27,6 +27,7 @@
       minecraft
       cad
       drawing
+      blockbench
     ];
   };
 }
