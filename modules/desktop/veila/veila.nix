@@ -27,7 +27,7 @@
         serviceConfig = {
           Type = "simple";
           ExecStart = "${
-            lib.getExe' inputs.veila.packages.${pkgs.stdenv.hostPlatform.system}.default "veilad"
+            lib.getExe' inputs.veila.packages.${pkgs.stdenv.hostPlatform.system}.default "veila daemon"
           } --config=${veilaConfig}";
         };
       };
