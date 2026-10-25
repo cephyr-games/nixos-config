@@ -8,6 +8,7 @@
       "Mod+G" { spawn "signal-desktop"; }
 
       "Mod+C" repeat=false { close-window; }
+      "Mod+Shift+C" repeat=false {spawn-sh "kill -9 $(niri msg focused-window|grep PID|awk '{print $2}')"; }
       "Mod+X" repeat=false { spawn-sh "pkill waybar || waybar"; }
 
       "Mod+T" { switch-preset-column-width; }
