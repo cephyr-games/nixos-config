@@ -44,13 +44,6 @@
         ".git"
       ];
       file-types = [ "rs" ];
-      formatter = {
-        command = "rustfmt";
-        args = [
-          "--emit"
-          "stdout"
-        ];
-      };
       language-servers = [ "rust-analyzer" ];
     }
     {
