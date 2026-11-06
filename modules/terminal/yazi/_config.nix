@@ -17,27 +17,34 @@
   opener = {
     edit = [
       {
-        run = "hx $1";
-        desc = "hx";
+        run = "hx %s";
+        desc = "open helix";
         block = true;
+      }
+    ];
+    img-open = [
+      {
+        run = "feh --scale-down --geometry 100%%x100%% %s";
+        desc = "open feh";
+        block = false;
       }
     ];
     pdf-open = [
       {
-        run = "firefox $1";
+        run = "firefox %s";
         desc = "open firefox";
         block = false;
       }
     ];
     play = [
       {
-        run = ''mpv --force-window "$@"'';
+        run = "mpv --force-window %s";
         orphan = true;
       }
     ];
     audio-open = [
       {
-        run = ''mpv "$@"'';
+        run = "mpv %s";
         for = "unix";
       }
     ];
@@ -72,11 +79,12 @@
       {
         mime = "image/*";
         use = [
+          "img-open"
           "open"
           "reveal"
         ];
       }
-      # Media
+      # Video
       {
         mime = "{video}/*";
         use = [
@@ -84,7 +92,7 @@
           "reveal"
         ];
       }
-      # Media
+      # Audio
       {
         mime = "{audio}/*";
         use = [
